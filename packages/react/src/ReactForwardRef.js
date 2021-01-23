@@ -7,6 +7,11 @@
 
 import {REACT_FORWARD_REF_TYPE, REACT_MEMO_TYPE} from 'shared/ReactSymbols';
 
+/**
+ * React.forwardRef 接受渲染函数作为参数。React 将使用 props 和 ref 作为参数来调用此函数。此函数应返回 React 节点。
+ * 返回一个 $$typeof为 REACT_FORWARD_REF_TYPE 的 React 节点，该节点接收到 ref 的jsx属性后会将ref向下传递给 render函数
+ * @param {*} render
+ */
 export function forwardRef<Props, ElementType: React$ElementType>(
   render: (props: Props, ref: React$Ref<ElementType>) => React$Node,
 ) {

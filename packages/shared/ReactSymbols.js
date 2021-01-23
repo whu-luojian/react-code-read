@@ -13,6 +13,11 @@
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
+/**
+ * React 元素类型定义，默认为十六进制数字，如果当前环境支持 Symbol，则实用 Symbol.for 定义元素类型
+ * 元素类型最终会赋值给 $$typeof 属性， React 根据 $$typeof 判断（是不是 symbol）是不是 react 元素，可防止服务端漏洞导致的 XSS 攻击
+ * https://imweb.io/topic/5c0dcd5b611a25cc7bf1d801
+ */
 export let REACT_ELEMENT_TYPE = 0xeac7;
 export let REACT_PORTAL_TYPE = 0xeaca;
 export let REACT_FRAGMENT_TYPE = 0xeacb;

@@ -9,6 +9,13 @@ import {REACT_MEMO_TYPE} from 'shared/ReactSymbols';
 
 import isValidElementType from 'shared/isValidElementType';
 
+/**
+ * React.memo 为高阶组件
+ * 将组件的 $$typeof 设为 REACT_MEMO_TYPE，后续渲染如果 props 为变更则直接复用最近一次的渲染结果
+ * compare 默认对 props 做浅层比较，也可传入自定义 compare 函数控制
+ * @param {*} type
+ * @param {*} compare
+ */
 export function memo<Props>(
   type: React$ElementType,
   compare?: (oldProps: Props, newProps: Props) => boolean,

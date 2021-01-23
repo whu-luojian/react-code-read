@@ -6,6 +6,9 @@
  *
  * @flow
  */
+/**
+ * React.Children 提供了用于处理 this.props.children 不透明数据结构的实用方法
+ */
 
 import type {ReactNodeList} from 'shared/ReactTypes';
 
@@ -239,7 +242,7 @@ function mapChildren(
 /**
  * Count the number of children that are typically specified as
  * `props.children`.
- *
+ * 返回 children 中组件总数量
  * See https://reactjs.org/docs/react-api.html#reactchildrencount
  *
  * @param {?*} children Children tree container.
@@ -302,6 +305,7 @@ function toArray(children: ?ReactNodeList): Array<React$Node> {
  * The current implementation of this function assumes that a single child gets
  * passed without a wrapper, but the purpose of this helper function is to
  * abstract away the particular structure of children.
+ * 验证 children 是否只有一个子节点（一个 React 元素），如果有则返回它，否则抛出错误
  *
  * @param {?object} children Child collection structure.
  * @return {ReactElement} The first and only `ReactElement` contained in the

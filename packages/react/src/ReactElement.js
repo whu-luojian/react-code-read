@@ -146,9 +146,12 @@ function warnIfStringRefCannotBeAutoConverted(config) {
 const ReactElement = function(type, key, ref, self, source, owner, props) {
   const element = {
     // This tag allows us to uniquely identify this as a React Element
+    // 元素类型，React 根据 $$typeof 判断是不是 react 元素，可防止服务端漏洞导致的 XSS 攻击
+    // https://imweb.io/topic/5c0dcd5b611a25cc7bf1d801
     $$typeof: REACT_ELEMENT_TYPE,
 
     // Built-in properties that belong on the element
+    // 内置属性
     type: type,
     key: key,
     ref: ref,
@@ -342,6 +345,8 @@ export function jsxDEV(type, config, maybeKey, source, self) {
 }
 
 /**
+ * 创建并返回指定类型的新 React 元素。其中的类型参数既可以是标签名字符串（如 'div' 或 'span'），
+ * 也可以是 React 组件 类型 （class 组件或函数组件），或是 React fragment 类型。
  * Create and return a new ReactElement of the given type.
  * See https://reactjs.org/docs/react-api.html#createelement
  */
@@ -356,6 +361,7 @@ export function createElement(type, config, children) {
   let self = null;
   let source = null;
 
+  // 处理 ref，key，props
   if (config != null) {
     if (hasValidRef(config)) {
       ref = config.ref;
@@ -381,6 +387,7 @@ export function createElement(type, config, children) {
     }
   }
 
+  // 处理 children
   // Children can be more than one argument, and those are transferred onto
   // the newly allocated props object.
   const childrenLength = arguments.length - 2;
@@ -399,7 +406,7 @@ export function createElement(type, config, children) {
     props.children = childArray;
   }
 
-  // Resolve default props
+  // Resolve default props 处理 defaultProps
   if (type && type.defaultProps) {
     const defaultProps = type.defaultProps;
     for (propName in defaultProps) {
@@ -538,6 +545,7 @@ export function cloneElement(element, config, children) {
 }
 
 /**
+ * 验证对象是否是 React 元素
  * Verifies the object is a ReactElement.
  * See https://reactjs.org/docs/react-api.html#isvalidelement
  * @param {?object} object

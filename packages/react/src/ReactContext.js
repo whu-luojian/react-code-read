@@ -11,6 +11,11 @@ import {REACT_PROVIDER_TYPE, REACT_CONTEXT_TYPE} from 'shared/ReactSymbols';
 
 import type {ReactContext} from 'shared/ReactTypes';
 
+/**
+ * 返回一个包含 Provider 和 Consumer 的对象，Provider 和 Consumer 都能访问 context 本身，context._currentValue 为值
+ * @param {*} defaultValue
+ * @param {*} calculateChangedBits
+ */
 export function createContext<T>(
   defaultValue: T,
   calculateChangedBits: ?(a: T, b: T) => number,
@@ -35,6 +40,7 @@ export function createContext<T>(
   const context: ReactContext<T> = {
     $$typeof: REACT_CONTEXT_TYPE,
     _calculateChangedBits: calculateChangedBits,
+    // 最多同时支持两个 renderers
     // As a workaround to support multiple concurrent renderers, we categorize
     // some renderers as primary and others as secondary. We only expect
     // there to be two concurrent renderers at most: React Native (primary) and

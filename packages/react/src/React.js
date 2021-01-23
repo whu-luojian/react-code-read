@@ -66,6 +66,7 @@ const createElement = __DEV__ ? createElementWithValidation : createElementProd;
 const cloneElement = __DEV__ ? cloneElementWithValidation : cloneElementProd;
 const createFactory = __DEV__ ? createFactoryWithValidation : createFactoryProd;
 
+// React.Children 支持的方法
 const Children = {
   map,
   forEach,
@@ -95,7 +96,9 @@ export {
   useReducer,
   useRef,
   useState,
-  REACT_FRAGMENT_TYPE as Fragment,
+  // 这几个都是React提供的组件，但他们呢其实都只是占位符，都是一个Symbol，
+  // 在React实际检测到他们的时候会做一些特殊的处理，比如StrictMode和AsyncMode会让他们的子节点对应的Fiber的mode都变成和他们一样的mode
+  REACT_FRAGMENT_TYPE as Fragment, // React.Fragment 本质就是 symbolFor('react.fragment')，在渲染时判断处理
   REACT_PROFILER_TYPE as Profiler,
   REACT_STRICT_MODE_TYPE as StrictMode,
   REACT_DEBUG_TRACING_MODE_TYPE as unstable_DebugTracingMode,

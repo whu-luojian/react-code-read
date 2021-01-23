@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// invariant，中文翻译为：入侵，用于插入参数验证代码
 import invariant from 'shared/invariant';
 
 import ReactNoopUpdateQueue from './ReactNoopUpdateQueue';
@@ -16,6 +17,11 @@ if (__DEV__) {
 
 /**
  * Base class helpers for the updating state of a component.
+ * 构造函数
+ * TODO:
+ * context 是如何注入的？
+ * updater 是如何更新的？
+ * 生命周期相关函数是何时何地注入的？
  */
 function Component(props, context, updater) {
   this.props = props;
@@ -50,6 +56,7 @@ Component.prototype.isReactComponent = {};
  *
  * @param {object|function} partialState Next partial state or function to
  *        produce next partial state to be merged with current state.
+ * partialState 为部分 state 组成的对象或一个返回 state 对象的函数
  * @param {?function} callback Called after state is updated.
  * @final
  * @protected
@@ -125,6 +132,8 @@ ComponentDummy.prototype = Component.prototype;
 
 /**
  * Convenience component with default shallow equality check for sCU.
+ * TODO:
+ * shouldComponentUpdate 是如何注入的？
  */
 function PureComponent(props, context, updater) {
   this.props = props;

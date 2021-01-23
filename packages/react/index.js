@@ -8,6 +8,7 @@
  */
 
 // Keep in sync with https://github.com/facebook/flow/blob/master/lib/react.js
+// 导出 react 的所有全局 type
 export type StatelessFunctionalComponent<
   P,
 > = React$StatelessFunctionalComponent<P>;
@@ -36,6 +37,7 @@ export type Interaction = {
 
 // Export all exports so that they're available in tests.
 // We can't use export * from in Flow for some reason.
+// 导出 react 的所有全局 API
 export {
   Children,
   createRef,

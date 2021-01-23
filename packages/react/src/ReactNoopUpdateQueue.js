@@ -31,10 +31,12 @@ function warnNoop(publicInstance, callerName) {
 
 /**
  * This is the abstract API for an update queue.
+ * react 更新队列抽象 api
  */
 const ReactNoopUpdateQueue = {
   /**
    * Checks whether or not this composite component is mounted.
+   * 检测 react 实例是否 mounted
    * @param {ReactClass} publicInstance The instance we want to test.
    * @return {boolean} True if mounted, false otherwise.
    * @protected

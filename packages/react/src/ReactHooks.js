@@ -18,6 +18,11 @@ import type {OpaqueIDType} from 'react-reconciler/src/ReactFiberHostConfig';
 
 import ReactCurrentDispatcher from './ReactCurrentDispatcher';
 
+/**
+ * TODO:
+ * hooks 原理？
+ */
+
 type BasicStateAction<S> = (S => S) | S;
 type Dispatch<A> = A => void;
 
